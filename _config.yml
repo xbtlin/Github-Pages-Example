@@ -2,8 +2,8 @@ permalink: /:title
 
 title: XbtLin.com
 url: http://xbtlin.com
-baseurl:/
+baseurl: /
 feed: /atom.xml
 author_info: <a href="http://xbtlin.com/">XbtLin</a>
-markdown:kramdown
-tz:Asia/Shanghai
+markdown: kramdown
+timezone: Asia/Shanghai
