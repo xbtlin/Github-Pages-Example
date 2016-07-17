@@ -6,3 +6,4 @@ baseurl:/
 feed: /atom.xml
 author_info: <a href="http://xbtlin.com/">XbtLin</a>
 markdown:kramdown
+timezone:Asia/Shanghai
