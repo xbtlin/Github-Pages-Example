@@ -2,7 +2,6 @@
 layout: default
 ---
 
-
 <body>
   <div class="index-wrapper">
     <div class="aside">
@@ -10,7 +9,6 @@ layout: default
         <h1>XbtLin</h1>
         <a href="http://weibo.com/linxuan521/" target="_blank"><img src="http://www.weibo.com/favicon.ico" alt="" width="25"/></a>
         <a href="http://www.douban.com/people/flyfishman/" target="_blank"><img src="http://www.douban.com/favicon.ico" alt="" width="22"/></a>
-        <a href="https://www.zhihu.com/people/linxuan02" target="_blank"><img src="http://www.zhihu.com/favicon.ico" alt="" width="22"/></a>
       </div>
       <div id="particles-js"></div>
     </div>
