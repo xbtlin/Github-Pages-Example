@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      我为什么写博客？
+title:      如何写技术文章？
 category: blog
-description: 写博客这个这么古老的行为，还有必要拿出来说吗，我看有。
+description: 原CSDN总编刘江老师在美团的分享，我整理了一下。
 ---
 
 # 如何写技术文章
