@@ -22,7 +22,8 @@ description: bash中的控制语句，比如if else, while, for, until。
 	fi
 
 	echo the argument is $#
-	exit 0
+	exit 0   
+
 解释上段代码，`$# -eq 2`意思是参数的数量等于2，`-eq`表示等于，是equal的缩写，`-gt`表示大于，是great的缩写。   
 if语句中需要注意的是：    
 	
@@ -48,7 +49,8 @@ if语句中需要注意的是：
 	logger $1 is no longer present
 	exit 0
 
-上段代码比较直观，while后面跟的是条件判断语句，如果条件判断语句成立，则执行do语句。上面代码中，如果ps aux中包含参数1，则激活while的do语句，否则跳过while。其中ps命令用于查看进程状态，是process status的缩写。aux是ps命令的参数。可以通过在命令行中`man ps`查看含义。|是管道符，grep代表字符串匹配。    
+上段代码比较直观，while后面跟的是条件判断语句，如果条件判断语句成立，则执行do语句。上面代码中，如果ps aux中包含参数1，则激活while的do语句，否则跳过while。其中ps命令用于查看进程状态，是process status的缩写。aux是ps命令的参数。可以通过在命令行中`man ps`查看含义。|是管道符，grep代表字符串匹配。     
+  
 
 ### for
 直接看例子
