@@ -27,9 +27,7 @@ find的使用实例：
 
 ### locate    
 
-locate命令其实是"find -name"的另一种写法，但是要比后者快得多，原因在于它不搜索具体目录，而是搜索一个数据库（/var/lib/locatedb），这个数据库中含有本地所有文件信息。Linux系统自动创建这个数据库，并且每天自动更新一次，所以使用locate命令查不到最新变动过的文件。为了避免这种情况，可以在使用locate之前，先使用updatedb命令，手动更新数据库。
-
-这儿加一句，Mac电脑下的等价命令是sudo /usr/libexec/locate.updatedb    
+locate命令其实是"find -name"的另一种写法，但是要比后者快得多，原因在于它不搜索具体目录，而是搜索一个数据库（/var/lib/locatedb），这个数据库中含有本地所有文件信息。Linux系统自动创建这个数据库，并且每天自动更新一次，所以使用locate命令查不到最新变动过的文件。为了避免这种情况，可以在使用locate之前，先使用`sudo updatedb`，手动更新数据库。这儿加一句，Mac电脑下的等价命令是`sudo /usr/libexec/locate.updatedb`。
 
 locate命令的使用实例：
 	
@@ -58,17 +56,14 @@ which命令的使用实例：
 示例：
 
 	find . |xargs grep "meituan"   
-
 延伸一下，通过下面这个命令组合，查找当前目录以及其第一级子目录中，所有包含 “meituan” 这个字符串的文件。
 示例：
 
 	find . -maxdepth 2|xargs grep "VPSeek"   
-
 进而，通过使用下面这个命令组合，查找当前目录以及其第一级子目录中，所有以 “.txt” 结尾并且包含 “meituan” 这个字符串的文件。
 示例：
 
-	find . -maxdepth 2 -name "*.txt" |xargs grep "meituan"   
-	
+	find . -maxdepth 2 -name "*.txt" |xargs grep "meituan"  	
 (完)
 
 
