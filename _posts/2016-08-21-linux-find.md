@@ -65,7 +65,9 @@ which命令的使用实例：
 进而，通过使用下面这个命令组合，查找当前目录以及其第一级子目录中，所有以 “.txt” 结尾并且包含 “meituan” 这个字符串的文件。
 示例：
 
-	find . -maxdepth 2 -name "*.txt" |xargs grep "meituan"  	
+	find . -maxdepth 2 -name "*.txt" |xargs grep "meituan"  
+
+
 (完)
 
 
