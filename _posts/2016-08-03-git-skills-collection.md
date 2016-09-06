@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      Git常用的5个技巧
+title:      Git常用的几个技巧
 category: blog
-description: 总结Git常用的5个技巧。
+description: 总结Git常用的几个技巧。
 ---
 
 本文总结Git常用的几个技巧
@@ -85,5 +85,22 @@ git pull其实是执行了*获取（fetch）*并*合并（merge）两个操作�
 	
 在合并改动之前，也可以使用如下命令查看：
 	
-	git diff <source_branch> <target_branch>
+	git diff <source_branch> <target_branch>    
 	
+## 技巧6：将本地仓库推到远端服务器      
+将本地仓库上传到远端服务器，可以使用如下命令添加：
+
+	git remote add origin <server>    
+	
+`<server>`代表远端服务器地址。       
+
+## 技巧7：设置提交用户名和邮箱    
+告诉git你提交的用户名，这样提交的时候会被打上标签。     
+
+	$ git config --global user.name "YOUR NAME"    
+	
+告诉git你提交的邮箱，在github中提交邮箱应该和git设置的邮箱一致，否则提交不算contribution。    
+	
+	$ git config --global user.email "YOUR EMAIL ADDRESS"   
+
+上面两个条命令都是加了`--global`参数，这样是全局有效的。如果只想让上两条命令在某个目录下作用，则需去掉这个参数。   

@@ -62,5 +62,27 @@ Pip是Python包管理系统。
 安装成功返回：    
 	
 	...
-	Successfully installed numpy-1.8.0rc1 protobuf-3.0.0b2 setuptools-1.1.6 tensorflow-0.10.0rc0 wheel-0.29.0
+	Successfully installed numpy-1.8.0rc1 protobuf-3.0.0b2 setuptools-1.1.6 tensorflow-0.10.0rc0 wheel-0.29.0   
 	
+
+import tensorflow遇到错误：
+
+	>>> import tensorflow
+	RuntimeError: module compiled against API version 0xa but this version of numpy is 0x9
+	Traceback (most recent call last):
+	  File "<stdin>", line 1, in <module>
+	  File "/Users/linxuan/Library/Python/2.7/lib/python/site-packages/tensorflow/__init__.py", line 23, in <module>
+	    from tensorflow.python import *
+	  File "/Users/linxuan/Library/Python/2.7/lib/python/site-packages/tensorflow/python/__init__.py", line 48, in <module>
+	    from tensorflow.python import pywrap_tensorflow
+	  File "/Users/linxuan/Library/Python/2.7/lib/python/site-packages/tensorflow/python/pywrap_tensorflow.py", line 28, in <module>
+	    _pywrap_tensorflow = swig_import_helper()
+	  File "/Users/linxuan/Library/Python/2.7/lib/python/site-packages/tensorflow/python/pywrap_tensorflow.py", line 24, in swig_import_helper
+	    _mod = imp.load_module('_pywrap_tensorflow', fp, pathname, description)
+	ImportError: numpy.core.multiarray failed to import	
+原因是系统中安装了多个numpy，而默认的那个版本太低。找到默认numpy的版本：     
+
+	import numpy
+	print numpy.__path__   
+
+对我来说是`/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/numpy`。将这个numpy文件夹改名成numpy_old就解决问题了。
