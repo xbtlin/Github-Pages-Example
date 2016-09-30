@@ -29,28 +29,29 @@ map函数产生每个单词和出现次数（为了简单，在本例中为1）�
 0. 用户程序调用MapReduce。
 1. 用户程序中的MapReduce库将输入数据分成M片大小固定的片（每片大小16~64MB，可以由参数指定），然后启动集群中的程序拷贝。
 2. 其中一个程序拷贝比较特殊，它就是master，其他都是执行master分配任务的worker。设有M个map任务和R个reduce任务。master挑选空闲的worker，分给它一个map或reduce任务。
-3. 被分配map任务的worker读取对应的输入分片（split）文件。它从输入数据中解析出key/value对（第1类），并传给Map函数。Map输出的中间key/value对（第2类）缓存在内存中。    
-
-**注意 ！第1类key/value和第2类key/value不一样。以wordcount为例，第1类key/value中key是文档名称，value是文档内容；第2类key/value中key是单词，value是单词出现次数。**
-
+3. 被分配map任务的worker读取对应的输入分片（split）文件。它从输入数据中解析出key/value对（第1类），并传给Map函数。Map输出的中间key/value对（第2类）缓存在内存中。 [注意1]   
 4. 缓存的中间key/value对周期性的写到本地磁盘，由分区函数分成R个区域。分区地址将被传给master，master负责将分区地址发送给reduce worker。
 5. Master通知reduce work分区地址后，reduce work用RPC的方式从磁盘读取缓存数据。reduce work读完所有中间数据后，按中间key排序，所以相同的key值的数据将被分到一组。如果中间数据达到内存装不下，则用外排序。
 6. reduce worker迭代读取排序后的中间数据，并将同一个key和其对应的value列表传给Reduce函数。Reduce函数的输出会追加写到这个reduce partition的最终输出文件，输出文件放到全区文件系统。
 7. 当所有的map和reduce任务完成后，master唤醒用户程序，继续执行用户程序代码。
 
-当所有都完成之后，mapreduce的输出在R个文件中（每个reduce任务一个文件）。通常不用将这R个文件合成1个文件，因为这R个文件可以作为下个MapReduce调用的输入。
+当所有都完成之后，mapreduce的输出在R个文件中（每个reduce任务一个文件）。通常不用将这R个文件合成1个文件，因为这R个文件可以作为下个MapReduce调用的输入。   
+
+**注意1：第1类key/value和第2类key/value不一样。以wordcount为例，第1类key/value中key是文档名称，value是文档内容；第2类key/value中key是单词，value是单词出现次数。**
 
 ## 容错   
+
 ### worker故障    
 master会定期ping worker，如果很久没收到回应，则将该worker标记为故障。任何在此worker上完成的/进行中的map任务要置成调度前状态，供别的worker调度。因为map的结果存在本地磁盘，而master无法访问故障work，所以故障work上的map需要重新执行。而已经执行的reduce则不用再次执行，因为reduce将输出结果放到全局文件系统。map重新执行需要通知对应的reduce，以便reduce从正确的地方读取数据。
        
-## master故障   
+### master故障   
 定期将master存下来，形成checkpoint。如果master故障，可以从checkpoint重启一个。如果只有一个master且master挂了，那么MapReduce任务终止，需要用户发现并重启。    
 
-## 本地性    
+### 本地性    
 网络带宽是分布式集群的稀缺资源。MapReduce任务的master拥有输入数据的位置，master总是在存有输入数据的机器上启动map，如果该机器故障，则启动同交换器下机器的map，这样可以减少网络传输。    
 
-## 高级功能   
+## 高级功能    
+ 
 ### 分区（Partitioning）函数     
 MapRuduce用户指定Reduce任务的输出个数R，输出数据根据分区函数计算分区。默认的分区函数是`hash(key) mod R`其中key是中间key。有时需要别的分区函数，比如中间key是URL，希望同一主机上的条目在同一输出文件中。这种情况下，可选择`hash(Hostname(urlkey)) mod R`作为分区函数。    
 

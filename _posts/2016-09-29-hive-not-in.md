@@ -1,0 +1,1 @@
+hive用left join实现in和not in语句。
