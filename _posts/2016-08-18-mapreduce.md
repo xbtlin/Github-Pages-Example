@@ -37,7 +37,7 @@ map函数产生每个单词和出现次数（为了简单，在本例中为1）�
 
 当所有都完成之后，mapreduce的输出在R个文件中（每个reduce任务一个文件）。通常不用将这R个文件合成1个文件，因为这R个文件可以作为下个MapReduce调用的输入。   
 
-**注意1：第1类key/value和第2类key/value不一样。以wordcount为例，第1类key/value中key是文档名称，value是文档内容；第2类key/value中key是单词，value是单词出现次数。**
+**注意1：第1类key/value和第2类key/value不一样。以wordcount为例，第1类key/value中key是文档名称，value是文档内容；第2类key/value中key是单词，value是单词出现次数。**    
 
 ## 容错   
 
