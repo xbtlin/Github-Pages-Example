@@ -11,3 +11,5 @@ UNIX时间戳转换为日期用函数： FROM_UNIXTIME()
 日期转换为UNIX时间戳用函数： UNIX_TIMESTAMP()
 
 	select UNIX_TIMESTAMP(’2006-11-04 12:23:00′);
+	
+	
