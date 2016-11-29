@@ -1,3 +1,11 @@
+---
+layout:     post
+title:      线性模型和LR
+category: blog
+description: 线性回归和LR
+---
+
+
 #线性模型
 
 ## 线性回归
